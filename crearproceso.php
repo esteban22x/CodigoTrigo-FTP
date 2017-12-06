@@ -1,8 +1,7 @@
 <?php
 session_start();
-$user="u703085342_devel";
-$pass="W/1H!KpEcDNI";
 
+require 'modelo/conectar.php';
 
 
 
@@ -22,9 +21,7 @@ if (isset($_POST['titulo'])){
 
     $accion         = $_POST['accion'];
 try {
-    $dbh = new PDO('mysql:host=mysql.hostinger.co;dbname=u703085342_blue', $user, $pass);
-    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+    
 
     if ($accion=="editar"){
         
@@ -32,7 +29,7 @@ try {
         $idModelo   = $_POST['idModelo'];
         $id_modelo  = $_POST['idReal'];
         $query = "UPDATE modelo SET id_modelo=".$id_modelo.",titulo='".$titulo."',descripcion='".$descripcion."',categoria='".$categoria."' WHERE modelo='".$idModelo."'";
-        $stmt = $dbh->prepare($query);
+        $stmt = $conexion->prepare($query);
         $stmt->execute();
         $stmt = null;
         
@@ -45,7 +42,7 @@ try {
 
         $idModelo = $_POST['idModelo'];
         $query = "DELETE FROM modelo WHERE modelo='".$idModelo."'";
-        $stmt = $dbh->prepare($query);
+        $stmt = $conexion->prepare($query);
         $stmt->execute();
         $stmt = null;
 
@@ -58,13 +55,13 @@ try {
 
         $link = $_POST['link'];
 
-        $stmt= $dbh->prepare("INSERT INTO revision (id_revision,id_admin,estado,fecha_consulta) VALUES (NULL,NULL,'N',NOW())");
+        $stmt= $conexion->prepare("INSERT INTO revision (id_revision,id_admin,estado,fecha_consulta) VALUES (NULL,NULL,'N',NOW())");
         $stmt->execute();
-        $id_insertado = $dbh->lastInsertId();
+        $id_insertado = $conexion->lastInsertId();
         $stmt = null;
 
 
-        $stmt = $dbh->prepare("INSERT INTO modelo (modelo, titulo, descripcion, categoria, id_revision) VALUES (?, ?, ?, ?, ?)");
+        $stmt = $conexion->prepare("INSERT INTO modelo (modelo, titulo, descripcion, categoria, id_revision) VALUES (?, ?, ?, ?, ?)");
         $stmt->bindParam(1, $modeloU);
         $stmt->bindParam(2, $titulo);
         $stmt->bindParam(3, $descripcion);
@@ -86,7 +83,7 @@ try {
         $termino = $_POST['consulta'];
         $query = "SELECT * FROM modelo_aprobado WHERE titulo LIKE '%".$termino."%'";
         $objeto = array();
-        foreach ($dbh->query($query) as $fila) {
+        foreach ($conexion->query($query) as $fila) {
             $objeto[] = array($fila["titulo"],$fila["modelo"]);
         }
         $objetoJson = json_encode($objeto);
@@ -96,7 +93,7 @@ try {
         $idModelo   = $_POST['idModelo'];
         $query = "SELECT * FROM modelo_revision WHERE modelo='".$idModelo."' LIMIT 1";
         $objeto = array();
-        foreach ($dbh->query($query) as $fila) {
+        foreach ($conexion->query($query) as $fila) {
              $objeto[] = array($fila["descripcion"],$fila["modelo"]);
 
          }
@@ -110,12 +107,12 @@ try {
         $estado = ($estado == 'N') ? 'R' : 'A';
         $idModelo   = $_POST['idModelo'];
         $query = "SELECT id_revision FROM modelo_revision WHERE modelo='".$idModelo."'";
-        $sth = $dbh->prepare($query);
+        $sth = $conexion->prepare($query);
         $sth->execute();
         $revision = $sth->fetch(PDO::FETCH_OBJ)->id_revision;
         echo $revision;
         $query = "UPDATE revision SET estado='".$estado."',id_admin='".$idAdmin."' WHERE id_revision='".$revision."'";
-        $stmt = $dbh->prepare($query);
+        $stmt = $conexion->prepare($query);
         $stmt->execute();
         $stmt = null;
         
@@ -125,7 +122,7 @@ try {
         $usuario    = $_POST['usuario'];
         $password   = $_POST['password'];
         $query = "SELECT COUNT(*) FROM admin WHERE usuario='".$usuario."' AND pass='".$password."'";
-        $sth = $dbh->query($query)->fetchColumn();
+        $sth = $conexion->query($query)->fetchColumn();
         $objeto = array();
         if ($sth == 1){
             $objeto['estado'] = 1; 

@@ -17,27 +17,26 @@ $modeloU = null;
 $titulo = null;
 $descripcion = null;
 try {
-    foreach ($conexion->f_arreglo('SELECT * FROM modelo_aprobado WHERE modelo="'.$modelo.'"') as $fila) {
+    foreach ($conexion->f_arreglo($conexion->consultar('SELECT * FROM modelo_aprobado WHERE modelo="'.$modelo.'"')) as $fila) {
         $modeloU      = $fila['modelo'];
         $titulo       = $fila['titulo'];
         $descripcion  = $fila['descripcion'];
         $categoria    = $fila['categoria'];
         $siguiente    = $fila['id_modelo'];
     }
-    foreach ($conexion->f_arreglo('SELECT * FROM modelo_aprobado WHERE id_modelo > '.$siguiente.' ORDER BY id_modelo LIMIT 1') as $fila) {
+    foreach ($conexion->f_arreglo($conexion->consultar('SELECT * FROM modelo_aprobado WHERE id_modelo > '.$siguiente.' ORDER BY id_modelo LIMIT 1')) as $fila) {
         $modeloUSiguiente     = $fila['modelo'];
         $tituloSiguiente      = $fila['titulo'];
         
     }
     if (!isset($modeloUSiguiente)){
-      $sth = $dbh->prepare("SELECT * FROM modelo_aprobado WHERE id_modelo < '".$siguiente."' ORDER BY id_modelo LIMIT 1");
-      $sth->execute();
-      $res = $sth->fetch(PDO::FETCH_OBJ);
+      $sth = $conexion->consultar("SELECT * FROM modelo_aprobado WHERE id_modelo < '".$siguiente."' ORDER BY id_modelo LIMIT 1");
+      $res = $conexion->f_fila($sth);
       $modeloUSiguiente = $res->modelo;
       $tituloSiguiente = $res->titulo;
     }
 
-    $dbh = null;
+    
 
 } catch (PDOException $e) {
     print "Error!: " . $e->getMessage() . "<br/>";

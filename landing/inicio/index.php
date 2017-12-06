@@ -153,7 +153,7 @@
          while ($fila = $conexion->f_arreglo($consulta)) {
           if ($contador==0 || $contador==2){
             echo '<div class="col-md-3">';
-          }
+          } 
 
 
           

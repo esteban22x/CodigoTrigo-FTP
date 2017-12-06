@@ -1,6 +1,5 @@
 <?php
-$user="u703085342_devel";
-$pass="W/1H!KpEcDNI";
+require 'modelo/conectar.php';
 $modelo=$_GET['id'];
 $bandera = false;
 
@@ -14,8 +13,7 @@ $modeloU = null;
 $titulo = null;
 $descripcion = null;
 try {
-    $dbh = new PDO('mysql:host=mysql.hostinger.co;dbname=u703085342_blue', $user, $pass);
-    foreach ($dbh->query('SELECT * FROM modelo WHERE modelo="'.$modelo.'"') as $fila) {
+    foreach ($conexion->f_arreglo($conexion->consultar('SELECT * FROM modelo WHERE modelo="'.$modelo.'"')) as $fila) {
 
         $idReal       = $fila['id_modelo'];
         $modeloU      = $fila['modelo'];
@@ -26,7 +24,7 @@ try {
 
 
     
-    $dbh = null;
+    
 } catch (PDOException $e) {
     print "Error!: " . $e->getMessage() . "<br/>";
     die();
