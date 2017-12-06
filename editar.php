@@ -13,7 +13,7 @@ $modeloU = null;
 $titulo = null;
 $descripcion = null;
 try {
-    foreach ($conexion->f_arreglo($conexion->consultar('SELECT * FROM modelo WHERE modelo="'.$modelo.'"')) as $fila) {
+    foreach ($conexion->consultar('SELECT * FROM modelo WHERE modelo="'.$modelo.'"') as $fila) {
 
         $idReal       = $fila['id_modelo'];
         $modeloU      = $fila['modelo'];

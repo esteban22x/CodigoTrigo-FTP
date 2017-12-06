@@ -4,6 +4,7 @@
 	
 	<title> Administrar </title>
 <?php
+  include 'modelo/conectar.php';
   include 'includers/navbar.php';
 ?>
 
@@ -15,9 +16,8 @@
       <div class="col-md-12">
 <?php
 
-try {
-    $dbh                  = new PDO('mysql:host=mysql.hostinger.co;dbname=u703085342_blue', "u703085342_devel", "W/1H!KpEcDNI");
-    $numeroFilas          = $dbh->query("SELECT COUNT(*) FROM modelo_revision")->fetchColumn(); 
+
+    $numeroFilas          = $conexion->preparaEjecuta("SELECT COUNT(*) FROM modelo_revision")->fetchColumn(); 
     
     if ($numeroFilas>0){
 
@@ -40,7 +40,7 @@ try {
 
 
 
-    foreach ($dbh->query('SELECT * FROM modelo_revision') as $fila) {
+    foreach ($conexion->consultar('SELECT * FROM modelo_revision') as $fila) {
         $numero = 1;
         
         echo"
@@ -63,10 +63,7 @@ try {
     echo "<div class='offset-md-6'><h3>No hay modelos pendientes de revisión</h3></div>";
   }
 
-} catch (PDOException $e) {
-    print "Error!: " . $e->getMessage() . "<br/>";
-    die();
-}
+
 
 ?>
 

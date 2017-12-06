@@ -36,7 +36,6 @@ try {
       $res = $conexion->f_fila($consul);
       $modeloUSiguiente = $res->modelo;
       $tituloSiguiente = $res->titulo;
-      echo "paso por aqui 222";
     }
 
 

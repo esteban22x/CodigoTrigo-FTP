@@ -24,7 +24,7 @@ $(document).ready(function(){
 	$("input[name='busqueda']").autoComplete({
 		minChars:2,
 		source: function(term,response){
-			$.post("http://bluuee.com/crearproceso.php",{consulta:term,accion:"busqueda"},function(datos){
+			$.post("crearproceso.php",{consulta:term,accion:"busqueda"},function(datos){
 				response(datos);
 			},"json");
 		},
@@ -34,7 +34,7 @@ $(document).ready(function(){
 	        return '<div class="autocomplete-suggestion" data-modelo="'+item[1]+'"  data-val="'+search+'">'+item[0].replace(re, "<b>$1</b>")+'</div>';
     	},
     	onSelect: function(e, term, item){
-    		window.location.href = "http://bluuee.com/index.php?id="+item.data('modelo');
+    		window.location.href = "index.php?id="+item.data('modelo');
         }
 	});
 

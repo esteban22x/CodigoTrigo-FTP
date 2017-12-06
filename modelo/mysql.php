@@ -17,10 +17,9 @@ class mysql {
     */
     function conectar()
 	{
-            $this->conexion = new mysqli($this->servidor,$this->usuario,$this->clave,$this->base) 
-            or die ("Error de Conexion MySQL ".$this->conexion->connect_errno);
+
+            $this->conexion = new PDO('mysql:host='.$this->servidor.';dbname='.$this->base.';charset=utf8',$this->usuario,$this->clave);
             $this->bandera = true;
-            $this->conexion->set_charset("utf8");
             return $this->conexion;
     }
     /*
@@ -91,6 +90,20 @@ class mysql {
     }
     /* Este es el cambio * /
     */
+    function PreparaEjecuta($sql){
+        $sth = $this->conexion->prepare($sql);
+        $sth->execute();
+        return $sth;
+    }
+
+    function ultimoIdInsertado(){
+        return $this->conexion->lastInsertId();
+    }
+    function preparar($sql){
+        return $this->conexion->prepare($sql);
+    }
+    
+
 }
 
 ?>

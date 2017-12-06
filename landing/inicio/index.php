@@ -148,9 +148,9 @@
 
         }
 
-         $consulta = $conexion->consultar($cons);
+         
          $contador  = 0; 
-         while ($fila = $conexion->f_arreglo($consulta)) {
+         foreach ($conexion->consultar($cons) as $fila) {
           if ($contador==0 || $contador==2){
             echo '<div class="col-md-3">';
           } 

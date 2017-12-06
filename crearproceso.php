@@ -29,8 +29,7 @@ try {
         $idModelo   = $_POST['idModelo'];
         $id_modelo  = $_POST['idReal'];
         $query = "UPDATE modelo SET id_modelo=".$id_modelo.",titulo='".$titulo."',descripcion='".$descripcion."',categoria='".$categoria."' WHERE modelo='".$idModelo."'";
-        $stmt = $conexion->prepare($query);
-        $stmt->execute();
+        $stmt = $conexion->preparaEjecuta($query);
         $stmt = null;
         
 
@@ -42,8 +41,7 @@ try {
 
         $idModelo = $_POST['idModelo'];
         $query = "DELETE FROM modelo WHERE modelo='".$idModelo."'";
-        $stmt = $conexion->prepare($query);
-        $stmt->execute();
+        $stmt = $conexion->preparaEjecuta($query);
         $stmt = null;
 
         echo "Modelo Correctamente Eliminado. Vuelve al Inicio <a href='./index.php'>Presionando aquí</a>";
@@ -55,13 +53,12 @@ try {
 
         $link = $_POST['link'];
 
-        $stmt= $conexion->prepare("INSERT INTO revision (id_revision,id_admin,estado,fecha_consulta) VALUES (NULL,NULL,'N',NOW())");
-        $stmt->execute();
-        $id_insertado = $conexion->lastInsertId();
+        $stmt= $conexion->preparaEjecuta("INSERT INTO revision (id_revision,id_admin,estado,fecha_consulta) VALUES (NULL,NULL,'N',NOW())");
+        $id_insertado = $conexion->ultimoIdInsertado();
         $stmt = null;
 
 
-        $stmt = $conexion->prepare("INSERT INTO modelo (modelo, titulo, descripcion, categoria, id_revision) VALUES (?, ?, ?, ?, ?)");
+        $stmt = $conexion->preparar("INSERT INTO modelo (modelo, titulo, descripcion, categoria, id_revision) VALUES (?, ?, ?, ?, ?)");
         $stmt->bindParam(1, $modeloU);
         $stmt->bindParam(2, $titulo);
         $stmt->bindParam(3, $descripcion);
@@ -111,8 +108,8 @@ try {
         $revision = $conexion->f_fila($query)->id_revision;
         echo $revision;
         $query = "UPDATE revision SET estado='".$estado."',id_admin='".$idAdmin."' WHERE id_revision='".$revision."'";
-        $stmt = $conexion->prepare($query);
-        $stmt->execute();
+        $stmt = $conexion->preparaEjecuta($query);
+        
         $stmt = null;
         
 
@@ -121,7 +118,7 @@ try {
         $usuario    = $_POST['usuario'];
         $password   = $_POST['password'];
         $query = "SELECT COUNT(*) FROM admin WHERE usuario='".$usuario."' AND pass='".$password."'";
-        $sth = $conexion->consultar($query)->fetchColumn();
+        $sth = $conexion->preparaEjecuta($query)->fetchColumn();
         $objeto = array();
         if ($sth == 1){
             $objeto['estado'] = 1; 
