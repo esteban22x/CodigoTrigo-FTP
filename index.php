@@ -17,14 +17,14 @@ $modeloU = null;
 $titulo = null;
 $descripcion = null;
 try {
-    foreach ($conexion->f_arreglo($conexion->consultar('SELECT * FROM modelo_aprobado WHERE modelo="'.$modelo.'"')) as $fila) {
+    while ($fila = $conexion->f_arreglo($conexion->consultar('SELECT * FROM modelo_aprobado WHERE modelo="'.$modelo.'"'))) {
         $modeloU      = $fila['modelo'];
         $titulo       = $fila['titulo'];
         $descripcion  = $fila['descripcion'];
         $categoria    = $fila['categoria'];
         $siguiente    = $fila['id_modelo'];
     }
-    foreach ($conexion->f_arreglo($conexion->consultar('SELECT * FROM modelo_aprobado WHERE id_modelo > '.$siguiente.' ORDER BY id_modelo LIMIT 1')) as $fila) {
+    while ($fila = $conexion->f_arreglo($conexion->consultar('SELECT * FROM modelo_aprobado WHERE id_modelo > '.$siguiente.' ORDER BY id_modelo LIMIT 1'))) {
         $modeloUSiguiente     = $fila['modelo'];
         $tituloSiguiente      = $fila['titulo'];
         
