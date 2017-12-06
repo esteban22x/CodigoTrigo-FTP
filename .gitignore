@@ -4,6 +4,10 @@ ehthumbs.db
 
 # Folder config file
 Desktop.ini
+bootstrap-4.0.0-beta/
+open-iconic/
+landing/inicio/fonts/
+landing/inicio/img
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
@@ -13,6 +17,8 @@ $RECYCLE.BIN/
 *.msi
 *.msm
 *.msp
+*.png
+*.jpg
 
 # Windows shortcuts
 *.lnk

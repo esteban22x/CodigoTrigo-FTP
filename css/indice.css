@@ -1,0 +1,108 @@
+
+body{
+	padding: 0;
+	margin: 0;
+	overflow: hidden;
+    background: url('../fondo.jpg');
+	
+}
+.sidebar {
+    
+    
+    background: -moz-linear-gradient(top,  #3f4c6b 22%, #606c88 37%, #606c88 68%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #3f4c6b 22%,#606c88 37%,#606c88 68%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #3f4c6b 22%,#606c88 37%,#606c88 68%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    top: 55;
+    left: 0;
+    right: 75%;
+    padding: 0 15px;
+    border: 0;
+    
+    width: 20%;
+    height: 92%;
+    /* background: rgba(51,51,51,.5); */
+    overflow: auto;
+    
+    border-bottom-right-radius: 100%10px; 
+
+    
+}
+
+.sidebar h5 {
+    display:block;
+    padding-bottom:5px;
+    font-size:24px;
+    font-weight:bold;
+    text-transform:uppercase;
+    border-bottom:2px solid #444
+}
+
+ #animacion{
+ 	top: 0;
+    left: 0; 
+    width: 100%;
+    height: 92%;
+ 	border: 0;
+    background: transparent;
+
+ }
+ 
+
+ @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+.containerImg {
+  width: 64px;
+  height: 64px;
+  position: absolute;
+  top: 200px;
+  right: 60px;
+  margin: 0 auto;
+  
+}
+.div-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.div-img .img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 200px;
+  height: 200px;
+  border-radius: 150px;
+  -webkit-border-radius: 150px;
+  -moz-border-radius: 150px;
+  transform: translate(0px);
+  -ms-transform: translate(0px);
+  -moz-transform: translate(0px);
+  -webkit-transform: translate(0px);
+  -o-transform: translate(0px);
+  -webkit-transition: all 500ms ease-in-out;
+  -moz-transition: all 500ms ease-in-out;
+  -ms-transition: all 500ms ease-in-out;
+  -o-transition: all 500ms ease-in-out;
+}
+.div-img .text {
+  font-family: 'Open Sans';
+  position: absolute;
+  z-index: -1;
+  display: block;
+  height: 50%;
+  top: 50%;
+  right: 0;
+  padding-right: 5px;
+}
+.div-img:hover .img {
+  transform: translate(-90px, 0px);
+  -ms-transform: translate(-90px, 0px);
+  -moz-transform: translate(-90px, 0px);
+  -webkit-transform: translate(-90px, 0px);
+  -o-transform: translate(-90px, 0px);
+}
