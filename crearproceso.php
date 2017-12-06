@@ -83,7 +83,7 @@ try {
         $termino = $_POST['consulta'];
         $query = "SELECT * FROM modelo_aprobado WHERE titulo LIKE '%".$termino."%'";
         $objeto = array();
-        foreach ($conexion->query($query) as $fila) {
+        foreach ($conexion->consultar($query) as $fila) {
             $objeto[] = array($fila["titulo"],$fila["modelo"]);
         }
         $objetoJson = json_encode($objeto);
@@ -93,7 +93,7 @@ try {
         $idModelo   = $_POST['idModelo'];
         $query = "SELECT * FROM modelo_revision WHERE modelo='".$idModelo."' LIMIT 1";
         $objeto = array();
-        foreach ($conexion->query($query) as $fila) {
+        foreach ($conexion->consultar($query) as $fila) {
              $objeto[] = array($fila["descripcion"],$fila["modelo"]);
 
          }
@@ -107,9 +107,8 @@ try {
         $estado = ($estado == 'N') ? 'R' : 'A';
         $idModelo   = $_POST['idModelo'];
         $query = "SELECT id_revision FROM modelo_revision WHERE modelo='".$idModelo."'";
-        $sth = $conexion->prepare($query);
-        $sth->execute();
-        $revision = $sth->fetch(PDO::FETCH_OBJ)->id_revision;
+        
+        $revision = $conexion->f_fila($query)->id_revision;
         echo $revision;
         $query = "UPDATE revision SET estado='".$estado."',id_admin='".$idAdmin."' WHERE id_revision='".$revision."'";
         $stmt = $conexion->prepare($query);
@@ -122,7 +121,7 @@ try {
         $usuario    = $_POST['usuario'];
         $password   = $_POST['password'];
         $query = "SELECT COUNT(*) FROM admin WHERE usuario='".$usuario."' AND pass='".$password."'";
-        $sth = $conexion->query($query)->fetchColumn();
+        $sth = $conexion->consultar($query)->fetchColumn();
         $objeto = array();
         if ($sth == 1){
             $objeto['estado'] = 1; 

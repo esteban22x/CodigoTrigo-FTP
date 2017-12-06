@@ -32,11 +32,11 @@ try {
     }
     
     if (!isset($modeloUSiguiente)){
-      $sth = $conexion->consultar("SELECT * FROM modelo_aprobado WHERE id_modelo < '".$siguiente."' ORDER BY id_modelo LIMIT 1");
-      $res = $conexion->f_fila($sth);
+      $consul = "SELECT * FROM modelo_aprobado WHERE id_modelo < '".$siguiente."' ORDER BY id_modelo LIMIT 1";
+      $res = $conexion->f_fila($consul);
       $modeloUSiguiente = $res->modelo;
       $tituloSiguiente = $res->titulo;
-      $conexion->liberar_consulta($sth);
+      echo "paso por aqui 222";
     }
 
 

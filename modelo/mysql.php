@@ -50,7 +50,9 @@ class mysql {
 
     function f_fila($sql)
 	{
-        return $sql->fetch_object();
+        $sth = $this->conexion->prepare($sql);
+        $sth->execute();
+        return $sth->fetch(PDO::FETCH_OBJ);
     }
     /*
      f_arreglo: Mostrara el resultado de una consulta en un array asociativo
