@@ -24,17 +24,21 @@ try {
         $categoria    = $fila['categoria'];
         $siguiente    = $fila['id_modelo'];
     }
+    
     while ($fila = $conexion->f_arreglo($conexion->consultar('SELECT * FROM modelo_aprobado WHERE id_modelo > '.$siguiente.' ORDER BY id_modelo LIMIT 1'))) {
         $modeloUSiguiente     = $fila['modelo'];
         $tituloSiguiente      = $fila['titulo'];
         
     }
+    
     if (!isset($modeloUSiguiente)){
       $sth = $conexion->consultar("SELECT * FROM modelo_aprobado WHERE id_modelo < '".$siguiente."' ORDER BY id_modelo LIMIT 1");
       $res = $conexion->f_fila($sth);
       $modeloUSiguiente = $res->modelo;
       $tituloSiguiente = $res->titulo;
+      $conexion->liberar_consulta($sth);
     }
+
 
     
 
