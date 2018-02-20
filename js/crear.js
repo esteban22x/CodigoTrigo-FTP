@@ -43,9 +43,9 @@ $(document).ready(function(){
 
 		e.preventDefault();
 
-		var titulo 		= $("#titulo").val();
+		var titulo 		= $.trim($("#titulo").val());
 		var categoria 	= $("#categoria").val();
-		var descripcion = $("#descripcion").val();
+		var descripcion = $.trim($("#descripcion").val());
 		var link 		= $("#linkModelo").val();
 		var captchar    = grecaptcha.getResponse();
 		var clave       = "6LdXWDoUAAAAAATpeM4YSigNAd5W32BW5B2ndq2W";
@@ -55,6 +55,7 @@ $(document).ready(function(){
 			response: 	captchar
 
 		},function(da){
+			console.log(da);
 			
 		})
 
@@ -76,9 +77,9 @@ $(document).ready(function(){
 
 		e.preventDefault();
 
-		var titulo 		= $("#titulo").val();
+		var titulo 		= $.trim($("#titulo").val());
 		var categoria 	= $("#categoria").val();
-		var descripcion = $("#descripcion").val();
+		var descripcion = $.trim($("#descripcion").val());
 		var idReal 		= $("#idReal").val();
 		var idModelo 	= $("#idModelo").val();
 

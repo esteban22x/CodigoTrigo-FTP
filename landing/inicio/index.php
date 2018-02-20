@@ -6,9 +6,19 @@
 ?>
 <html lang="es">
   <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-67509521-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-67509521-2');
+</script>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
+    <meta name="description" content="Bluee es una página diseñada para darle un nuevo giro a la educación">
     <meta name="author" content="esteban22x">
     <link rel="icon" href="">
 
@@ -281,7 +291,7 @@
           <h6 class="heading-footer">Sobre Nosotros</h6>
           <p>Bluee es un proyecto educativo </p>
           
-          <p><i class="fa fa-envelope"></i> <span>Email :</span> </p>
+          <p><i class="fa fa-envelope"></i> <span>Email : administracion@bluuee.com</span> </p>
         </div>
         <div class="col-lg-2 col-md-4">
           

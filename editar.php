@@ -33,8 +33,18 @@ try {
 
 ?>
 
-<html>
+<html lang="es">
 <head>
+    <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-67509521-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-67509521-2');
+</script>
 	
 	<title> Editar Modelo </title>
 <?php
@@ -76,12 +86,7 @@ try {
       <div class="col-md-6">
         <div class="form-group">
           <label for="descripcion">Descripción</label>
-          <textarea class="form-control" id="descripcion" rows="10">
-          <?php
-            echo trim($descripcion);
-
-          ?>
-        </textarea>
+          <textarea class="form-control" id="descripcion" rows="10"><?php echo $descripcion; ?></textarea>
         </div>
 
 
@@ -102,16 +107,15 @@ try {
 
     </div>
     <!--  row   -->
-<button type="button" id="editar" class="btn btn-primary">Editar</button>
-<button type="button" id="eliminar" class="btn btn-primary">Eliminar</button>
+    <button type="button" id="editar" class="btn btn-primary">Editar</button>
+    <button type="button" id="eliminar" class="btn btn-primary">Eliminar</button>
   </form>
-<div class="row justify-content-md-center">
-<div class="col-md-6">
-<div class="alert alert-secondary" role="alert" id="mensaje" style="display:none;">
-  
-</div>
-</div>
-</div>
+  <div class="row justify-content-md-center">
+    <div class="col-md-6">
+      <div class="alert alert-secondary" role="alert" id="mensaje" style="display:none;">
+      </div>
+    </div>
+  </div>
 
 
 </div>

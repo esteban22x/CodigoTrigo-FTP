@@ -52,6 +52,17 @@ try {
 <html>
 <head>
 	   <title> <?php echo $titulo; ?> </title>
+
+       <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-67509521-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-67509521-2');
+</script>
+
 <?php 
   include('./includers/navbar.php');
 ?>
